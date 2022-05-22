@@ -10,10 +10,12 @@ const QuestionSelect = props => {
   let onSelet = data => {
     setValue(data);
   };
+
   return (
     <QuestionContent
       {...props}
-      isValid={props.data.options.is_required?value.length:true}
+      isValid={props.data.options.is_required ? value !== 'Нет данных' :true}
+      // isValid={value.length}
       value={props.data.options.is_required?value:value?value:'Нет данных'}
       onNext={() => {
         props.onNext(value);

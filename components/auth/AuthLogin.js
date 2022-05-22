@@ -154,7 +154,7 @@ const AuthLogin = ({
                 onPress={formikProps.handleSubmit}
               />
             </View>
-            <View style={{marginBottom: 15}}>
+            <View style={{marginBottom: 6}}>
               <AppButton
                 text="Зарегистрироваться"
                 round
@@ -171,7 +171,9 @@ const AuthLogin = ({
               </View>*/}
 
             <TouchableOpacity
-              onPress={() => setActiveComponent('ResetPassword')}>
+              onPress={() => setActiveComponent('ResetPassword')}
+              style={{paddingTop: 9, paddingBottom: 25}}
+            >
               <Text
                 style={[
                   styles.forgotPassword,

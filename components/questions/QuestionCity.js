@@ -1,5 +1,5 @@
-import React, {useState, useContext, useRef} from 'react';
-import {View, Picker, StyleSheet} from 'react-native';
+import React, {useState, useContext, useRef, useEffect} from 'react';
+import {View, LogBox, StyleSheet} from 'react-native';
 
 import QuestionContent from './root/QuestionContainer';
 import SearchableDropdown from 'react-native-searchable-dropdown';
@@ -11,15 +11,17 @@ import {Autocomplete, withKeyboardAwareScrollView} from "react-native-dropdown-a
 const QuestionSelect = props => {
   const [value, setValue] = useState(props.defaultValue || cities[0]);
   const componentRef = useRef();
-const tmp = cities.map(function(item) { return { name: item, id: item}});
-const {theme} = useContext(ThemeContext);
-var isValidValue = false;
+  const tmp = cities.map(function(item) { return { name: item, id: item}});
+  const {theme} = useContext(ThemeContext);
+  var isValidValue = false;
 
+  useEffect(() => {
+    LogBox.ignoreLogs(['VirtualizedLists should never be nested']);
+  }, [])
 
-
-const setValidValue = (item) => {
-  setValue(item);
-};
+  const setValidValue = (item) => {
+    setValue(item);
+  };
   return (
     <QuestionContent keyboardShouldPersistTaps={'always'}
       {...props}
@@ -28,9 +30,35 @@ const setValidValue = (item) => {
       onNext={() => props.onNext(value)}>
       <View
         style={{
-          height: 120
+          height: 120,
         }}>
-    <Autocomplete minimumCharactersCount={2} onChangeText={(text) => setValidValue(text)} ref={componentRef}  overlayStyle={{backgroundColor:'#FFF'}} listHeader={'Города'} noDataText={'Город не найден'} minimumCharactersCount={2} handleSelectItem={(item, id) => setValidValue(item) } placeholder={'Город'}inputStyle={{width: '100%',paddingLeft: 0, textAlign:'left', height: 60, borderBottomColor:ThemeConstants[theme].borderColor, borderTopColor:'transparent', borderRightColor:'transparent', borderLeftColor:'transparent', borderRadius:0}} data={cities} valueExtractor={item => item} />  
+    <Autocomplete 
+    minimumCharactersCount={2} 
+    onChangeText={(text) => setValidValue(text)} 
+    ref={componentRef}  
+    overlayStyle={{backgroundColor:'#FFF'}} 
+    listHeader={'Города'} 
+    noDataText={'Город не найден'} 
+    minimumCharactersCount={2} 
+    handleSelectItem={(item, id) => setValidValue(item) } 
+    placeholder={'Город'}
+    // pickerStyle={{left: 0, top: 60, zIndex: 6000}}
+    inputStyle={{
+      width: '100%',
+      paddingLeft: 0, 
+      textAlign:'left', 
+      height: 60, 
+      borderBottomColor:ThemeConstants[theme].borderColor, 
+      borderTopColor:'transparent', 
+      borderRightColor:'transparent', 
+      borderLeftColor:'transparent',
+      borderLeftWidth: 0,
+      borderRightWidth: 0,
+      borderTopWidth: 0,
+      borderRadius:0
+    }} 
+    data={cities} 
+    valueExtractor={item => item} />  
       </View>
     </QuestionContent>
   );

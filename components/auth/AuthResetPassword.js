@@ -1,7 +1,7 @@
 import * as yup from 'yup';
 
 import React, {useState} from 'react';
-import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {StyleSheet, Text, TouchableOpacity, View, Dimensions} from 'react-native';
 
 import AppButton from '../app/root/AppButton';
 import AppInput from '../app/root/AppInput';
@@ -65,17 +65,53 @@ const AuthResetPassword = ({
           {formikProps => (
             <View>
               <View style={{marginBottom: 40}}>
-                <AppInput
+                {/* <AppInput
                   placholder="Почта"
                   onChange={formikProps.handleChange('email')}
                   onBlur={formikProps.handleBlur('email')}
                   isValid={
                     !formikProps.errors.email || !formikProps.touched.email
                   }
-                />
+                /> */}
+                <View style={{marginBottom: 0, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center'}}>
+                  <View style={{width: Dimensions.get('window').width - 180}}>
+                    <AppInput
+                      // style={{color: '#000'}}
+                      placholder="Почта"
+                      value={formikProps.values.email}
+                      onChange={formikProps.handleChange('email')}
+                      onBlur={formikProps.handleBlur('email')}
+                      isValid={
+                        !formikProps.errors.email || !formikProps.touched.email
+                      }
+                    />
+                    </View>
+                    <View style={{
+                      width: 110,
+                      // backgroundColor: 'red',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      flexDirection: 'row',
+                      height: '100%',
+                      borderBottomWidth: 1,
+                      // borderLeftWidth: 2,
+                      borderColor: ThemeConstants[theme].borderColor
+                    }}
+                    >
+                    <Text
+                      style={{
+                        fontSize: 13,
+                        color: ThemeConstants[theme].text,
+                        
+                      }}>
+                        @promedcs.com
+                    </Text>
+                  </View>
+                </View>
               </View>
+              
 
-              <View style={{marginBottom: 12}}>
+              <View style={{marginBottom: 6}}>
                 <AppButton
                   text="Востановить пароль"
                   round
@@ -85,7 +121,7 @@ const AuthResetPassword = ({
               </View>
 
               <TouchableOpacity
-                style={styles.back}
+                style={[styles.back, {paddingTop: 9, paddingBottom: 25}]}
                 onPress={() => setActiveComponent('Login')}>
                 <Icon type="AntDesign" name="left" style={styles.backIcon} />
 

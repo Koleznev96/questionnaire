@@ -6,6 +6,7 @@ import {
   RefreshControl,
   ActivityIndicator,
   StyleSheet,
+ FlatList
 } from 'react-native';
 
 import LayoutConstants from '../../../constants/Layout';
@@ -55,6 +56,24 @@ const AppCardList = ({
                   </Animatable.View>
                 ))}
             </ScrollView>
+            // <FlatList
+            //   data={data}
+            //   renderItem={({ item, index }) => (
+            //     <Animatable.View
+            //       animation="fadeInUp"
+            //       useNativeDriver={true}
+            //       style={styles.card}
+            //       delay={index * 100}
+            //       key={item.id}>
+            //       {renderItem(item)}
+            //     </Animatable.View>
+            //   )}
+            //   contentContainerStyle={[styles.contentContainer]}
+            //   showsVerticalScrollIndicator={false}
+            //   refreshControl={
+            //     <RefreshControl refreshing={loading} onRefresh={onRefresh} />
+            //   }>
+            //   </FlatList>
           ) : (
             <View
               style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>

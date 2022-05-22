@@ -20,13 +20,14 @@ export default function LoginScreen({navigation}) {
   const {theme} = useContext(ThemeContext);
 
   goToHome = () => {
+    // check version - rootVersion
     fetch('https://sales.ursosan.ru/download/vers.txt', { headers: {
       'Cache-Control': 'no-cache'
     }})
     .then((response) => response.text())
     .then((json) => {
       console.warn(json);
-      if (json != '6') {
+      if (json != '7') {
         Alert.alert(
           'Внимание',
           'Чтобы пользоваться приложением, необходимо скачать обновление!',

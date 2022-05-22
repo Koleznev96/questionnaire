@@ -13,7 +13,8 @@ import {Icon, Text} from 'native-base';
 
 import QuestionContent from './root/QuestionContainer';
 
-import ImagePicker from 'react-native-image-picker';
+// import ImagePicker from 'react-native-image-picker';
+import {launchCamera, launchImageLibrary} from 'react-native-image-picker'; 
 
 const QuestionPhoto = props => {
   const [isLoading, setIsLoading] = useState(false);
@@ -24,14 +25,15 @@ const QuestionPhoto = props => {
       noData: false,
     };
 
-    ImagePicker.launchImageLibrary(options, response => {
-      if (response.uri) {
-        const base64 = `data:${response.type};base64,${response.data}`;
-        setFile(base64);
+    launchImageLibrary(options, response => {
+      if (!response?.didCancel && response?.assets[0]?.uri) {
+        // const base64 = `data:${response.type};base64,${response.data}`;
+        // const base64 = `data:${response.assets[0].type};base64,${response.assets[0].uri}`;
+        // setFile(base64);
+        setFile(response.assets[0].uri);
       }
     });
   };
-
 
   return (
     <QuestionContent

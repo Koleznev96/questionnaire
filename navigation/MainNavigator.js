@@ -37,4 +37,16 @@ const MainStack = createStackNavigator(
 
 MainStack.path = '';
 
+// const prevGetStateForAction = MainStack.router.getStateForAction;
+
+// MainStack.router.getStateForAction = (action, state) => {
+//   // Do not allow to go back from Home
+//   if (action.type === 'Navigation/BACK' && state && state.routes[state.index].routeName === 'Questions') {
+//     console.log('1111')
+//     return null;
+//   }
+
+//   return prevGetStateForAction(action, state);
+// };
+
 export default MainStack;

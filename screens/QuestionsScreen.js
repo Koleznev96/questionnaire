@@ -9,6 +9,7 @@ import {
   TouchableOpacity,
   View,
   ImageBackground,
+  BackHandler
 } from 'react-native';
 import {Icon} from 'native-base';
 import React, {useEffect, useState, useMemo} from 'react';
@@ -245,6 +246,19 @@ const QuestionScreen = ({
       },
     ]);
   };
+
+  useEffect(() => {
+    const backHandler = BackHandler.addEventListener('hardwareBackPress', () => {
+      if (navigation.isFocused()) {
+        _handlerConfirmClose();
+        return true;
+      }
+      return false;
+    });
+
+    return () => backHandler.remove();
+  }, [])
+  
 
   return (
     <ImageBackground

@@ -1,6 +1,6 @@
-import {StatusBar, StyleSheet, Text, Linking, Alert} from 'react-native';
 import React, {useContext, useEffect, useState} from 'react';
 import {Title, View} from 'native-base';
+import {StatusBar, StyleSheet, Text, Linking, Alert, BackHandler} from 'react-native';
 import {
   loadFolder,
   saveQuestionFolderData,
@@ -65,12 +65,13 @@ const HomeScreen = ({
   }, [theme]);
 
   checkVersion = (item) => {
+    // check version - rootVersion
     fetch('https://sales.ursosan.ru/download/vers.txt', { headers: {
       'Cache-Control': 'no-cache'
     }})
     .then((response) => response.text())
     .then((json) => {
-      if (json != '6') {
+      if (json != '7') {
         Alert.alert(
           'Внимание',
           'Чтобы пользоваться приложением, необходимо скачать обновление!',
@@ -93,6 +94,7 @@ const HomeScreen = ({
     });
 
   }
+
   return (
     <View style={styles.container}>
       <StatusBar barStyle="light-content" />
