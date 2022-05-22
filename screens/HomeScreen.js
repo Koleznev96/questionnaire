@@ -1,6 +1,6 @@
 import React, {useContext, useEffect, useState} from 'react';
 import {Title, View} from 'native-base';
-import {StatusBar, StyleSheet, Text, Linking, Alert, BackHandler} from 'react-native';
+import {StatusBar, StyleSheet, Text, Linking, Alert, Platform} from 'react-native';
 import {
   loadFolder,
   saveQuestionFolderData,
@@ -71,6 +71,7 @@ const HomeScreen = ({
     }})
     .then((response) => response.text())
     .then((json) => {
+      let url_upoad = Platform.OS === 'ios' ? 'https://sales.ursosan.ru/download' : 'https://sales.ursosan.ru/download/promedcs.apk';
       if (json != '7') {
         Alert.alert(
           'Внимание',
@@ -78,7 +79,7 @@ const HomeScreen = ({
           [
             {
               text: 'Скачать',
-              onPress: () => Linking.openURL('https://sales.ursosan.ru/download'),
+              onPress: () => Linking.openURL(url_upoad),
             },
           ],
         );

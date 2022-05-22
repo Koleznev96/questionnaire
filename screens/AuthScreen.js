@@ -1,6 +1,6 @@
 import * as Animatable from 'react-native-animatable';
 
-import {Dimensions, ScrollView, StyleSheet, View, Alert, Linking} from 'react-native';
+import {Dimensions, ScrollView, StyleSheet, View, Alert, Linking, Platform} from 'react-native';
 import React, {useContext, useState} from 'react';
 import {getStatusBarHeight, ifIphoneX} from 'react-native-iphone-x-helper';
 
@@ -26,6 +26,7 @@ export default function LoginScreen({navigation}) {
     }})
     .then((response) => response.text())
     .then((json) => {
+      let url_upoad = Platform.OS === 'ios' ? 'https://sales.ursosan.ru/download' : 'https://sales.ursosan.ru/download/promedcs.apk';
       console.warn(json);
       if (json != '7') {
         Alert.alert(
@@ -34,7 +35,7 @@ export default function LoginScreen({navigation}) {
           [
             {
               text: 'Скачать',
-              onPress: () => Linking.openURL('https://sales.ursosan.ru/download'),
+              onPress: () => Linking.openURL(url_upoad),
             },
           ],
         );

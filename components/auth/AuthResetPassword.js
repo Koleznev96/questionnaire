@@ -123,7 +123,7 @@ const AuthResetPassword = ({
               <TouchableOpacity
                 style={[styles.back, {paddingTop: 9, paddingBottom: 25}]}
                 onPress={() => setActiveComponent('Login')}>
-                <Icon type="AntDesign" name="left" style={styles.backIcon} />
+                <Icon type="AntDesign" name="left" style={[styles.backIcon, {color: ThemeConstants[theme].text}]} />
 
                 <Text
                   style={[
@@ -201,6 +201,7 @@ const styles = StyleSheet.create({
 
   backIcon: {
     fontSize: 12,
-    color: '#DE7676',
+    // color: '#DE7676',
+    // color: '#000000',
   },
 });

@@ -83,9 +83,9 @@ const styles = StyleSheet.create({
   footer: {
     paddingHorizontal: 15,
     paddingVertical: 12,
+    flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-
     borderTopWidth: 0.25,
     borderColor: '#ee6e73',
   },
