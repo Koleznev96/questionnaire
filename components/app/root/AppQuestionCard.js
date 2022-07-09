@@ -92,7 +92,11 @@ const styles = StyleSheet.create({
 
   btn: {
     paddingHorizontal: 25,
-    paddingVertical: 12,
+    // paddingVertical: 6,
     backgroundColor: '#ef9a9a',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    // height: 100,
   },
 });

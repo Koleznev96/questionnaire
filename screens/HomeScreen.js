@@ -72,7 +72,8 @@ const HomeScreen = ({
     .then((response) => response.text())
     .then((json) => {
       let url_upoad = Platform.OS === 'ios' ? 'https://sales.ursosan.ru/download' : 'https://sales.ursosan.ru/download/promedcs.apk';
-      if (json != '7') {
+      // Update version 09.07.22
+      if (json != '8') {
         Alert.alert(
           'Внимание',
           'Чтобы пользоваться приложением, необходимо скачать обновление!',
