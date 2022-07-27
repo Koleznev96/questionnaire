@@ -22,6 +22,7 @@ import {ThemeContext} from '../context';
 import {connect} from 'react-redux';
 
 import {getRenderItem} from '../utils/question';
+import { version } from '../const';
 
 const HomeScreen = ({
   navigation,
@@ -66,14 +67,15 @@ const HomeScreen = ({
 
   checkVersion = (item) => {
     // check version - rootVersion
-    fetch('https://sales.ursosan.ru/download/vers.txt', { headers: {
+    const url_get = Platform.OS === 'ios' ? 'https://sales.ursosan.ru/download/vers.txt' : 'https://sales.ursosan.ru/download/vers1.txt';
+    fetch(url_get, { headers: {
       'Cache-Control': 'no-cache'
     }})
     .then((response) => response.text())
     .then((json) => {
       let url_upoad = Platform.OS === 'ios' ? 'https://sales.ursosan.ru/download' : 'https://sales.ursosan.ru/download/promedcs.apk';
       // Update version 09.07.22
-      if (json != '8') {
+      if (json != version[Platform.OS]) {
         Alert.alert(
           'Внимание',
           'Чтобы пользоваться приложением, необходимо скачать обновление!',

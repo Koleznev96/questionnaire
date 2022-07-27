@@ -21,7 +21,8 @@ export default function LoginScreen({navigation}) {
 
   goToHome = () => {
     // check version - rootVersion
-    fetch('https://sales.ursosan.ru/download/vers.txt', { headers: {
+    const url_get = Platform.OS === 'ios' ? 'https://sales.ursosan.ru/download/vers.txt' : 'https://sales.ursosan.ru/download/vers1.txt';
+    fetch(url_get, { headers: {
       'Cache-Control': 'no-cache'
     }})
     .then((response) => response.text())
@@ -29,7 +30,7 @@ export default function LoginScreen({navigation}) {
       let url_upoad = Platform.OS === 'ios' ? 'https://sales.ursosan.ru/download' : 'https://sales.ursosan.ru/download/promedcs.apk';
       console.warn(json);
       // Update version 09.07.22
-      if (json != '8') {
+      if (json != version[Platform.OS]) {
         Alert.alert(
           'Внимание',
           'Чтобы пользоваться приложением, необходимо скачать обновление!',
