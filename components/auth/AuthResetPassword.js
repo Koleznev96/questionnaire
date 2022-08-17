@@ -24,7 +24,7 @@ const AuthResetPassword = ({
     setIsLoading(true);
 
     resetPassword({
-      email,
+      email: email + '@promedcs.com',
       cb: () => {
         if (error) setError(null);
         setIsLoading(false);
@@ -35,6 +35,7 @@ const AuthResetPassword = ({
         }, 2000);
       },
       err: error => {
+        console.log('errr-', error);
         setIsLoading(false);
 
         setError(error);
@@ -46,7 +47,7 @@ const AuthResetPassword = ({
     email: yup
       .string()
       .label('Email')
-      .email()
+      // .email()
       .required(),
   });
 

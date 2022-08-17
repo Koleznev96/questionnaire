@@ -46,7 +46,7 @@ const AuthRegister = ({
       },
       err: error => {
         setIsLoading(false);
-
+        console.log('err-', error, email)
         setError(error);
       },
 

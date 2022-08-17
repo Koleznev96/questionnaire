@@ -11,6 +11,7 @@ import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import ThemeConstants from '../constants/Theme';
 import {ThemeContext} from '../context';
 import AuthRegister from '../components/auth/AuthRegister';
+import { version } from '../const';
 
 const {height} = Dimensions.get('window');
 
@@ -27,8 +28,11 @@ export default function LoginScreen({navigation}) {
     }})
     .then((response) => response.text())
     .then((json) => {
+      console.log('111111')
       let url_upoad = Platform.OS === 'ios' ? 'https://sales.ursosan.ru/download' : 'https://sales.ursosan.ru/download/promedcs.apk';
+      console.log('222222')
       console.warn(json);
+      console.log('3333333')
       // Update version 09.07.22
       if (json != version[Platform.OS]) {
         Alert.alert(
@@ -47,6 +51,7 @@ export default function LoginScreen({navigation}) {
     })
     .catch((error) => {
       console.error(error);
+      console.log('nnnn')
     });
 
   }

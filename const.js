@@ -1,4 +1,4 @@
 export const version = {
-    'ios': '8',
-    'android': '8',
+    'ios': '9',
+    'android': '9',
 }
